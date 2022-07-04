@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MediatR;
 
-public static class MediatorExtensions
+public static class MediatrExtensions
 {
     public static async Task DispatchDomainEvents(this IMediator mediator, DbContext context)
     {
