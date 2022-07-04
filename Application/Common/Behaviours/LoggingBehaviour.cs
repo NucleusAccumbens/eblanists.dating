@@ -17,11 +17,11 @@ public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest> where T
     public Task Process(TRequest request, CancellationToken cancellationToken)
     {
         var requestName = typeof(TRequest).Name;
-        var telegramUserId = _currentUserService.TelegramUserChatId ?? default;
+        var telegramUserChatId = _currentUserService.TelegramUserChatId ?? default;
         var datingAppUserId = _currentUserService.DatingAppUserId ?? default;
 
         _logger.LogInformation("eblanist.dating request: {Name} {@TelegramUserChatId} {@UserId}  {@Request}",
-            requestName, telegramUserId, datingAppUserId, request);
+            requestName, telegramUserChatId, datingAppUserId, request);
 
         return Task.CompletedTask;
     }
