@@ -5,5 +5,6 @@
         public BodyParts BodyPart { get; set; }
         public string PathToPhoto { get; set; } = string.Empty;
         public Guid PhotoAlbumId { get; set; }
+        public PhotoAlbum? PhotoAlbum { get; set; } 
     }
 }
