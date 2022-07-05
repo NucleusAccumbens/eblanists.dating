@@ -2,7 +2,7 @@
 
 namespace Application.Common.Interfaces
 {
-    public interface IDatingAppDbContext
+    public interface IDatingAppDbContext 
     {
         DbSet<DatingAppUser> DatingAppUsers { get; } 
 
