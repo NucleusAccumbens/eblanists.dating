@@ -12,8 +12,14 @@ public class DatingAppDbCotext : DbContext, IDatingAppDbContext
     private readonly IMediator _mediator;
     private readonly AuditableEntitySaveChangesInterceptor _auditableEntitySaveChangesInterceptor;
 
+    public DatingAppDbCotext()
+        : base()
+    {
+    }
+
     public DatingAppDbCotext(IMediator mediator,
-        AuditableEntitySaveChangesInterceptor auditableEntitySaveChangesInterceptor)
+        AuditableEntitySaveChangesInterceptor auditableEntitySaveChangesInterceptor, DbContextOptions options)
+        : base(options)
     {
         _mediator = mediator;
         _auditableEntitySaveChangesInterceptor = auditableEntitySaveChangesInterceptor;
@@ -31,11 +37,26 @@ public class DatingAppDbCotext : DbContext, IDatingAppDbContext
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+        builder.Entity<TelegramUser>()
+            .HasData(new TelegramUser()
+            {
+                Id = Guid.NewGuid(),
+                ChatId = 444343256,
+                Username = "noncredistka"
+            });
+
+        builder.Entity<PhotoAlbum>()
+            .HasMany(a => a.Photos)
+            .WithOne(p => p.PhotoAlbum)
+            .HasForeignKey(p => p.PhotoAlbumId);
+
         base.OnModelCreating(builder);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+
+        optionsBuilder.UseSqlServer("Data Source=USER;Initial Catalog=eblanists.dating;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         optionsBuilder.AddInterceptors(_auditableEntitySaveChangesInterceptor);
     }
 
