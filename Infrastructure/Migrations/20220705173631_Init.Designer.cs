@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
-    [DbContext(typeof(DatingAppDbCotext))]
+    [DbContext(typeof(TelegramBotDatingAppDbCotext))]
     [Migration("20220705173631_Init")]
     partial class Init
     {
