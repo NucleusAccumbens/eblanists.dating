@@ -1,6 +1,5 @@
 using Application.Common.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
-using TelegramBot.Services;
+using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddTelegramBotServices();
+//builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
 var app = builder.Build();
 

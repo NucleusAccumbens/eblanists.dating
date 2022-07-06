@@ -12,13 +12,11 @@
 
   <ItemGroup>
     <Folder Include="Common\Models\" />
-    <Folder Include="Common\Mappings\" />
     <Folder Include="DatingAppUsers\Queries\" />
     <Folder Include="PhotoAlbums\Commands\" />
     <Folder Include="PhotoAlbums\Queries\" />
     <Folder Include="Photos\Commands\" />
     <Folder Include="Photos\Queries\" />
-    <Folder Include="TelegramUsers\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
