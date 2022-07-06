@@ -1,6 +1,6 @@
 ﻿namespace Application.TelegramUsers.Commands.UpdateTelegramUser
 {
-    public record UpdateTelegramUserCommand : IRequest
+    public record UpdateTelegramUserCommand : IRequest<long>
     {
         public long ChatId { get; set; }
         public string? Username { get; set; }
@@ -9,7 +9,7 @@
         public Guid? DatingAppUserId { get; set; }
     }
 
-    public class UpdateTelegramUserCommandHandler : IRequestHandler<UpdateTelegramUserCommand>
+    public class UpdateTelegramUserCommandHandler : IRequestHandler<UpdateTelegramUserCommand, long>
     {
         private readonly IDatingAppDbContext _context;
 
@@ -18,7 +18,7 @@
             _context = context;
         }
 
-        public async Task<Unit> Handle(UpdateTelegramUserCommand request, CancellationToken cancellationToken)
+        public async Task<long> Handle(UpdateTelegramUserCommand request, CancellationToken cancellationToken)
         {
             var entity = await _context.TelegramUsers
                 .SingleOrDefaultAsync(u => u.ChatId == request.ChatId, cancellationToken);
@@ -35,7 +35,7 @@
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            return Unit.Value;
+            return entity.ChatId;
         }
     }
 }

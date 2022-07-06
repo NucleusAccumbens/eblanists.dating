@@ -17,7 +17,7 @@ namespace Application.TelegramUsers.Commands.CreateTelegramUser
                 .MustAsync(BeUniqueChatId).WithMessage("The specified ChatId already exists.");
         }
 
-        public async Task<bool> BeUniqueChatId(long chatId, CancellationToken cancellationToken)
+        private async Task<bool> BeUniqueChatId(long chatId, CancellationToken cancellationToken)
         {
             return await _context.TelegramUsers
                 .AllAsync(u => u.ChatId != chatId, cancellationToken);

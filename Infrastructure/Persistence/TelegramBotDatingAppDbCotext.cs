@@ -3,7 +3,6 @@ using Domain.Entities;
 using Infrastructure.Persistence.Interceptors;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System.Reflection;
 
 namespace Infrastructure.Persistence;

@@ -2,8 +2,8 @@
 
 public record CreateTelegramUserCommand : IRequest<long>
 {
-    public long ChatId { get; set; }
-    public string? Username { get; set; }
+    public long ChatId { get; init; }
+    public string? Username { get; init; }
 }
 
 public class CreateTelegramUserCommandHandler : IRequestHandler<CreateTelegramUserCommand, long>
@@ -23,6 +23,9 @@ public class CreateTelegramUserCommandHandler : IRequestHandler<CreateTelegramUs
             Username = request.Username,
             IsAdmin = false,
         };
+
+        await _context.TelegramUsers
+            .AddAsync(entity, cancellationToken);
 
         await _context.SaveChangesAsync(cancellationToken);
 

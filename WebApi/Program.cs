@@ -1,4 +1,6 @@
 using Application.Common.Interfaces;
+using Application.TelegramUsers.Commands.CreateTelegramUser;
+using FluentValidation;
 using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
