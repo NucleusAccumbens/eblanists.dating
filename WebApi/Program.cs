@@ -1,8 +1,5 @@
 using Application.Common.Interfaces;
-using CleanArchitecture.WebUI.Services;
-using Infrastructure.Persistence;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
+using TelegramBot.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +13,7 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 
 //ToDo: Написать ConfigureServices для WebApi
-builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
+builder.Services.AddSingleton<ICurrentUserService, CurrentTelegramBotUserService>();
 
 var app = builder.Build();
 
