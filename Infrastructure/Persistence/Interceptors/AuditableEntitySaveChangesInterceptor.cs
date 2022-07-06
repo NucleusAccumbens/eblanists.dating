@@ -8,14 +8,14 @@ namespace Infrastructure.Persistence.Interceptors;
 
 public class AuditableEntitySaveChangesInterceptor : SaveChangesInterceptor
 {
-    private readonly ICurrentUserService _currentUserService;
+    //private readonly ICurrentUserService _currentUserService;
     private readonly IDateTime _dateTime;
 
     public AuditableEntitySaveChangesInterceptor(
-        ICurrentUserService currentUserService,
+        //ICurrentUserService currentUserService,
         IDateTime dateTime)
     {
-        _currentUserService = currentUserService;
+        //_currentUserService = currentUserService;
         _dateTime = dateTime;
     }
 
@@ -41,15 +41,15 @@ public class AuditableEntitySaveChangesInterceptor : SaveChangesInterceptor
         {
             if (entry.State == EntityState.Added)
             {
-                entry.Entity.CreatedBy = _currentUserService.TelegramUserChatId.ToString() ??
-                    _currentUserService.DatingAppUserId.ToString();
+                //entry.Entity.CreatedBy = _currentUserService.TelegramUserChatId.ToString() ??
+                //    _currentUserService.DatingAppUserId.ToString();
                 entry.Entity.Created = _dateTime.Now;
             }
 
             if (entry.State == EntityState.Added || entry.State == EntityState.Modified || entry.HasChangedOwnedEntities())
             {
-                entry.Entity.LastModifiedBy = _currentUserService.TelegramUserChatId.ToString() ??
-                    _currentUserService.DatingAppUserId.ToString();
+                //entry.Entity.LastModifiedBy = _currentUserService.TelegramUserChatId.ToString() ??
+                //    _currentUserService.DatingAppUserId.ToString();
                 entry.Entity.LastModified = _dateTime.Now;
             }
         }
